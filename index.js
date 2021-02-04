@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     res.write('<h3>Hello from NodeJS</h3>');
     res.end(`
         <div style="background: orange; width:200px; height:200px">
-            <h2>Test</h2>
+            <h2>Test 1</h2>
         </div>
     `);
 });
