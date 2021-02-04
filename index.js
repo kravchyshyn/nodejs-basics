@@ -1,19 +1,28 @@
 // Використовується для створення та налаштування власного сервера
-const http = require('http')
+const http = require('http');
+const fs = require('fs');
+const path = require('path')
 
 const server = http.createServer((req, res) => {
     if (req.method === 'GET') {
         res.writeHead(200, {
-            'Content-Type': 'text/html'
+            'Content-Type': 'text/html; charset=utf-8'
         });
+        
+        if (req.url === '/') {
+            fs.readFile(path.join(__dirname, 'views', 'index.html'), (err, content) => {
+                if (err) throw err;
 
-        res.end(`
-            <h1>Form</h1>
-            <form method="post" action="/">
-                <input name="title" type="text" />
-                <button type="submit">Snd</button>
-            </form>
-        `)
+                res.end(content)
+            })
+        } else if (req.url === '/about') {
+            fs.readFile(path.join(__dirname, 'views', 'about.html'), (err, content) => {
+                if (err) throw err;
+
+                res.end(content)
+            });
+        }
+
     } else if (req.method === 'POST') {
         const body = [];
         res.writeHead(200, {
