@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
                 })
         } else if (req.url === '/about') {
             fs.readFile(
-                path.join(__dirname, 'views', 'about.html'), 
+                path.join(__dirname, 'views', 'about.html'),
                 'utf-8',
                 (err, content) => {
                     if (err) throw err;
@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
             ];
 
             res.end(JSON.stringify(users));
-        
+
         }
     } else if (req.method === 'POST') {
         const body = [];
